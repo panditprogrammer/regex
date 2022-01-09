@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="This is javascript Regular Expression or REGEX tutorials by Panditprogrammer.com . This Regular Expression tutorials works for all programming language for string searching.  In this tutorials you will learn all Regular expression syntax from basic to advance. Step by step Regular Expression crase course for beginner's . After this tutorials you will be able to apply regex on any string. ">
+    <meta name="keywords" content="Regular expression , REGEX, Pandit programmer, Panditprogrammer.com, regular expression for beginner, Pandit programmer regular expression, REGEX syntax, regex in javascript, regex in php, regex in python,">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expression in javascript | Pandit Programmer tutorials (Panditprogrammer.com)</title>
+</head>
+
+<body style="width: 100%; margin: auto; text-align: center;">
+
+    <h1>Welcome to Panditprogrammer.com</h1>
+    <h3> javascript Regular Expression</h3>
+
+    <p>Open console for Regular Expression Testing...</p>
+
+    <script>
+        let string = "The quick brown fox jumps over the lazy dog.";
+
+        // 1. Regex with test() function 
+        // finding  a string 
+        let regex = /quick/;
+
+        // finding a string with OR operator (| any one)
+        regex = /dog|Fox|cat/;
+
+        // finding string in-casesensitive 
+        regex = /Fox/i;
+        // console.log(regex.test(string));
+
+        // ---------------------------------
+
+
+        // 2. Regex with match() function 
+        // extract string 
+        result = string.match(/brown/);
+        console.log(result);
+
+        string = "This is test string. sudo and super. fun gun "
+        /*  IMPORTANT POINTS FOR REGEX
+        flag :
+        g - Global (more than one occurances)
+        i - case in-sensitive
+        . - (period) is used to checking next character anything
+        ^ - Not specified (Exclude)
+        + - One or Multiples times occurances
+        * - zero or Multiples times occurances
+        ? - lazy way string (sortest string finding)
+        ? - previous character is optional
+        (?) - lookahead 
+        ^ - starting string 
+        $ - ending string
+
+        define the occurances using curly braces
+         {2,10} -  => aleast two characters at beginning and end ten characters only
+         {2,} -  => aleast two characters at beginning and end infinite characters 
+        {minimum, maximum }  => aleast min characters at beginning  and max  characters at the ending
+
+        escape sequences:
+        \w - all characters small and capitals with numbers and underscore
+        \W - Not (all characters small and capitals with numbers and underscore)
+        \d - all digits or numbers only
+        \D - Not (all digits or numbers)
+        \s - white spaces only including TAB, SPACE,RETURN etc. 
+        \S - Not (white spaces )
+
+
+        */
+
+
+        // checking more than one occurances of a string
+        result = string.match(/is/g);
+        console.log(result);
+
+        // checking with flag more than one occurances with case in-sensitive
+        result = string.match(/Is/ig)
+        console.log(result);
+
+        // checking string starts with a string and ends with any string
+        result = string.match(/su./g);
+        console.log(result);
+
+
+        // checking string starts with any string and ends with a string
+        result = string.match(/.un/g);
+        console.log(result);
+
+        // matching single character with multiple possibilities
+        string = "No hugs No kisses Only bugs and fixes";
+        // possibility one - starts with any character and middle character must be [a OR i OR u] anyone of these and ends with "gs" 
+        result = string.match(/.[aiu]gs/g);
+        console.log(result);
+
+        // match letters of a Alphabets - range of letters 
+        string = "The quick brown fox jumps over the lazy dog.";
+        result = string.match(/[a-z]/gi);
+        // result = string.match(/[a-z|A-Z]/g);
+        console.log(result);
+
+        // match number and letters of the Alphabets
+        //1. range of numbers with characters
+        string = "The value of PI is 3.141592";
+        result = string.match(/[1-5a-i]/ig);
+        console.log(result);
+
+        // match single character which is not specified 
+        // match anything except these characters 0-9 and all Vowels
+        result = string.match(/[^0-9aeiou]/gi);
+        console.log(result);
+
+        // match characters that occur one or more times 
+        result = string.match(/[e+]/gi);
+        console.log(result);
+
+        // match characters that occur zero or more times 
+        // match after specified characters 
+        string = "Goooooooooood World......";
+        result = string.match(/go*/i);
+        console.log(result);
+
+        // find characters with lazy matching
+        string = "programmer";
+        // 1. start with 'p' and middle characters anything and ends with 'r' one or more occurances(greedy way)
+        result = string.match(/p[a-z]*r/);
+        console.log(result);
+
+        // 2. start with 'p' and middle characters anything and ends with 'r' one or more occurances(LAZY way)
+        result = string.match(/p[a-z]*?r/);
+        console.log(result);
+
+        // 3. starts with '<' or ends middle character may be anything with '>' ('>' zero or more occur) 
+        string = "<h1>Hello World</h1>";
+        result = string.match(/<.*>/);
+        console.log(result);
+
+        // find one or more occurances of characters together
+        string = "javajsjavajsjavajavajavajsccccccppppppppp";
+        result = string.match(/p+/);
+        console.log(result);
+
+
+        // match beginning string patterns ---------------------------------------------
+        string = "this is javascript regular expression"
+        let RE = /^this/;
+        result = RE.test(string);
+        console.log(result);
+
+        // match ending string patterns
+        RE = /expression$/;
+        result = RE.test(string);
+        console.log(result);
+
+        // match all letters and numbers underscore -----------------
+        string = "The quick brown fox jumps over the lazy dog.";
+        result = string.match(/\w/g);
+        console.log(result);
+
+        // match except letters number and underscore
+        result = string.match(/\W/g);
+        console.log(result);
+
+        // match all digist or numbers 
+        string = "This is line number 150.";
+        result = string.match(/\d/g);
+        console.log(result);
+
+        // match all not digits or numbers 
+        result = string.match(/\D/g);
+        console.log(result);
+
+
+        //****************************** REGEX PROJECTS ****************************************************
+        // P1. CREATE USERNAME VALIDATOR 
+        // step1. if there are number , they must be at the end. 
+        // step2. Letters can be lowercase and uppercase. 
+        // step3. minimum two characters long and two letters can't have numbers
+
+        let username = "Panditprogrammer1234";
+        let Regex_User = /^[a-zA-Z]{2,}\d*$/;
+
+        result = Regex_User.test(username);
+        console.log(result);
+
+
+        // match white space characters 
+        string = "The quick brown fox jumps over the lazy dog.";
+        result = string.match(/\s/g);
+        console.log(result);
+
+        //match not white spaces characters
+        result = string.match(/\S/g);
+        console.log(result);
+
+
+        // Specify minmum and maximum numbers of matches using {min, max}--------------------
+        string = "helloooooooooooooooooooooo World..........";
+
+        // match min 2 and max 10 or more
+        RE = /hello{2,10}/;
+        console.log(RE.test(string));
+
+        // match 2 or infinite 
+        RE = /hello{2,} Wo/;
+        console.log(RE.test(string));
+
+        //match 22 characters and space and 'Wo' 
+        RE = /hello{22} Wo/;
+        console.log(RE.test(string));
+
+
+        // checking All or None (include 'u' or not )
+        string = "favorite";
+        RE = /favou?rite/;
+        console.log(RE.test(string));
+
+
+        // positive lookahead and negative ahead --------------------------------------------
+        // check string ahead(next) of given string then return first
+        string = "quit";
+        result = string.match(/q(?=u)/);
+        console.log(result);
+
+        // check string is not ahead(next) of given string then return first
+        string = "qit";
+        result = string.match(/q(?!u)/);
+        console.log(result);
+
+        // checking atleast 5 characters and atleast 2 or more digits ---------------
+        string = "password1234";
+        RE = /(?=\w{5})(?=\D*\d{2})/;
+        console.log(RE.test(string));
+
+        // Reuse Pattern using Capture Groups 
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
