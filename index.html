@@ -59,6 +59,10 @@
          {2,} -  => aleast two characters at beginning and end infinite characters 
         {minimum, maximum }  => aleast min characters at beginning  and max  characters at the ending
 
+        () - Capture group 
+        \1 - repeat  group 1 
+        \2 - repeat group 2 and so on...
+
         escape sequences:
         \w - all characters small and capitals with numbers and underscore
         \W - Not (all characters small and capitals with numbers and underscore)
@@ -234,12 +238,30 @@
         console.log(RE.test(string));
 
         // Reuse Pattern using Capture Groups 
+        // match repeating string 
+        string = "javascript javascript";
+        RE = /(\w+)\s\1/;
+        console.log(RE.test(string));
+        console.log(string.match(RE));
 
 
+        // match three group of numbers using capture group 
+        string = "12 12 12";
+        RE = /^(\d+)\s\1\s\1$/;
+        console.log(string.match(RE));
+        console.log(RE.test(string));
 
 
+        // match Capture group to Search and Replace 
+        RE = /12/g;
+        console.log(string.replace(RE,"Hello"));
 
+        // remove whitespaces from start and ends 
+        string = " This is sample string. ";
+        RE = /^\s|\s+$/g;
+        console.log(string.replace(RE,""));
 
+        console.log("Congratulations! You have completed Regular Expression Crase Course.");
 
 
 
